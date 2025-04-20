@@ -2,55 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>About BATU University</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     .nav-link {
-  position: relative;
-}
-.nav-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: #3B82F6;
-  transition: width 0.3s ease;
-}
-.nav-link:hover::after {
-  width: 100%;
-}
-.active-link::after {
-  width: 100%;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #3B82F6;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .active-link::after {
+      width: 100%;
+    }
+    .navbar-scrolled {
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
-.btn-primary {
-  background: linear-gradient(to right, #2563EB, #4F46E5);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-.btn-primary:hover {
-  background: linear-gradient(to right, #1D4ED8, #4338CA);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: all 0.5s ease;
-}
-.btn-primary:hover::after {
-  left: 100%;
-}
+    .btn-primary {
+      background: linear-gradient(to right, #2563EB, #4F46E5);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(to right, #1D4ED8, #4338CA);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+    }
+    .btn-primary:hover::after {
+      left: 100%;
+    }
+
     .hero-gradient {
       background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
     }
@@ -117,63 +123,149 @@
         left: 0;
       }
     }
+
+    /* Mobile Menu Styles */
+    .mobile-menu-button {
+      touch-action: manipulation; /* Improves touch responsiveness */
+      -webkit-tap-highlight-color: transparent; /* Removes default tap highlight */
+    }
+    .mobile-menu-button .block {
+      display: block;
+    }
+    .mobile-menu-button .hidden {
+      display: none;
+    }
+    .mobile-menu-button[aria-expanded="true"] .block {
+      display: none;
+    }
+    .mobile-menu-button[aria-expanded="true"] .hidden {
+      display: block;
+    }
+
+    /* Ensure mobile menu is visible when active */
+    #mobile-menu {
+      display: none;
+      position: relative;
+      z-index: 50;
+      width: 100%;
+      overflow: visible;
+    }
+    #mobile-menu.active {
+      display: block;
+    }
+
+    /* Prevent overflow issues when zoomed */
+    nav {
+      overflow: visible !important;
+    }
   </style>
 </head>
 <body class="font-sans bg-gray-50">
- <!-- Enhanced Navigation -->
-<nav class="bg-white shadow-lg fixed w-full z-50 transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-20">
-      <div class="flex items-center">
-        <div class="flex-shrink-0 flex items-center">
-          <svg class="h-10 w-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-            <path d="M12 14l6.16-3.42a12 12 0 01.2 1.38A12 12 0 0112 20.8a12 12 0 01-6.36-2.04v-.02l6.36-3.74z"></path>
-          </svg>
-          <span class="ml-3 text-2xl font-bold text-gray-800">BATU University</span>
+  <!-- Enhanced Responsive Navigation -->
+  <nav class="bg-white shadow-lg fixed w-full z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="index.html" class="flex-shrink-0 flex items-center">
+            <svg class="h-10 w-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+              <path d="M12 14l6.16-3.42a12 12 0 01.2 1.38A12 12 0 0112 20.8a12 12 0 01-6.36-2.04v-.02l6.36-3.74z"></path>
+            </svg>
+            <span class="ml-3 text-2xl font-bold text-gray-800">BATU University</span>
+          </a>
         </div>
-        <div class="hidden md:ml-12 md:flex md:space-x-10">
-          <a href="index.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex md:items-center md:space-x-8">
+          <a href="index.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">
             Home
           </a>
-          <a href="about.html" class="nav-link active-link text-blue-600 inline-flex items-center px-1 pt-1 text-sm font-medium">
+          <a href="about.html" class="nav-link active-link text-blue-600 text-sm font-medium">
             About
           </a>
-          <a href="programs.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+          <a href="programs.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">
             Programs
           </a>
-          <a href="#" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+          <a href="#" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">
             Research
           </a>
-          <a href="#" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+          <a href="#" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">
             Campus
           </a>
-          <a href="Admissions.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+          <a href="Admissions.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">
             Admissions
           </a>
+          <a href="login-form/SignUp_LogIn_Form.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">
+            Login
+          </a>
+          <!-- Search Icon -->
+          <button class="text-gray-500 hover:text-gray-900 focus:outline-none" aria-label="Search">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+          <a href="#" class="px-6 py-2 rounded-full text-sm font-medium text-white btn-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            Apply Now
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="h-6 w-6 block hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <svg class="h-6 w-6 hidden close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
         </div>
       </div>
-      <div class="hidden md:flex items-center">
-        <a href="login-form/SignUp_LogIn_Form.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-2 pt-01 text-m font-medium">
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
+        <a href="index.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+          Home
+        </a>
+        <a href="about.html" class="nav-link active-link block px-3 py-2 rounded-md text-base font-medium text-blue-600 hover:text-blue-900 hover:bg-gray-50">
+          About
+        </a>
+        <a href="programs.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+          Programs
+        </a>
+        <a href="#" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+          Research
+        </a>
+        <a href="#" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+          Campus
+        </a>
+        <a href="Admissions.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+          Admissions
+        </a>
+        <a href="login-form/SignUp_LogIn_Form.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">
           Login
         </a>
-        <a href="#" class="ml-5 px-6 py-3 rounded-full text-sm font-medium text-white btn-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
           Apply Now
         </a>
-      </div>
-      <div class="flex items-center md:hidden">
-        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
-          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+        <!-- Mobile Search -->
+        <div class="px-3 py-2">
+          <button class="w-full text-left text-gray-500 hover:text-gray-900 flex items-center" aria-label="Search">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            Search
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <!-- Hero Section -->
-
   <div class="hero-gradient text-white pt-32 pb-20 relative overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
       <svg class="absolute right-0 top-0 h-full w-full transform translate-x-1/3" viewBox="0 0 800 800" fill="none">
@@ -550,84 +642,113 @@
   </div>
 
   <!-- CTA Section -->
-
-     <div class="bg-gradient-to-r from-blue-700 to-purple-700 text-white">
-      <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 lg:flex lg:items-center lg:justify-between">
-        <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
-          <span class="block">Become part of our story</span>
-          <span class="block text-blue-200">Join the BATU community today.</span>
-        </h2>
-        <div class="mt-8 flex lg:mt-0 gap-4">
-          <a href="#" class="btn-primary px-6 py-3 rounded-full text-white font-medium shadow-lg">
-            Apply Now
-          </a>
-          <a href="#" class="px-6 py-3 rounded-full text-white bg-opacity-50 border border-white font-medium">
-            Request Info
-          </a>
-        </div>
+  <div class="bg-gradient-to-r from-blue-700 to-purple-700 text-white">
+    <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 lg:flex lg:items-center lg:justify-between">
+      <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+        <span class="block">Become part of our story</span>
+        <span class="block text-blue-200">Join the BATU community today.</span>
+      </h2>
+      <div class="mt-8 flex lg:mt-0 gap-4">
+        <a href="#" class="btn-primary px-6 py-3 rounded-full text-white font-medium shadow-lg">
+          Apply Now
+        </a>
+        <a href="#" class="px-6 py-3 rounded-full text-white bg-opacity-50 border border-white font-medium">
+          Request Info
+        </a>
       </div>
     </div>
-      <!-- Footer Section -->
-      <footer class="bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <!-- Logo and Description -->
-            <div>
-              <div class="flex items-center">
-                <svg class="h-8 w-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                  <path d="M12 14l6.16-3.42a12 12 0 01.2 1.38A12 12 0 0112 20.8a12 12 0 01-6.36-2.04v-.02l6.36-3.74z"></path>
-                </svg>
-                <span class="ml-2 text-xl font-bold">BATU University</span>
-              </div>
-              <p class="mt-4 text-gray-400 text-sm">
-                Pioneering the future of technology education and innovation since 2005.
-              </p>
-            </div>
-    
-            <!-- Quick Links -->
-            <div>
-              <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Quick Links</h3>
-              <ul class="mt-4 space-y-4">
-                <li><a href="#" class="text-base text-gray-300 hover:text-white">Home</a></li>
-                <li><a href="#" class="text-base text-gray-300 hover:text-white">About</a></li>
-                <li><a href="#" class="text-base text-gray-300 hover:text-white">Programs</a></li>
-                <li><a href="#" class="text-base text-gray-300 hover:text-white">Admissions</a></li>
-              </ul>
-            </div>
-    
-            <div>
-              <h3 class="text-lg font-semibold">Campus</h3>
-              <ul class="mt-4 space-y-2">
-                <li><a href="#" class="text-gray-400 hover:text-white">Map & Directions</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-white">Virtual Tour</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-white">Housing</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-white">Facilities</a></li>
-              </ul>
-            </div>
-    
-            <!-- Contact Info -->
-            <div>
-              <h3 class="text-lg font-semibold">Connect</h3>
-              <ul class="mt-4 space-y-2">
-                <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-white">News & Events</a></li>
-              </ul>
-              <div class="mt-4 flex space-x-4">
-                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
-              </div>
-            </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Logo and Description -->
+        <div>
+          <div class="flex items-center">
+            <svg class="h-8 w-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+              <path d="M12 14l6.16-3.42a12 12 0 01.2 1.38A12 12 0 0112 20.8a12 12 0 01-6.36-2.04v-.02l6.36-3.74z"></path>
+            </svg>
+            <span class="ml-2 text-xl font-bold">BATU University</span>
           </div>
-    
-          <!-- Social Media and Copyright -->
-            <div class="mt-4 m pt-4 border-t border-gray-800 text-center text-gray-400">
-              <p>© 2025 BATU University. All rights reserved.</p>
-            </div>
+          <p class="mt-4 text-gray-400 text-sm">
+            Pioneering the future of technology education and innovation since 2005.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Quick Links</h3>
+          <ul class="mt-4 space-y-4">
+            <li><a href="#" class="text-base text-gray-300 hover:text-white">Home</a></li>
+            <li><a href="#" class="text-base text-gray-300 hover:text-white">About</a></li>
+            <li><a href="#" class="text-base text-gray-300 hover:text-white">Programs</a></li>
+            <li><a href="#" class="text-base text-gray-300 hover:text-white">Admissions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold">Campus</h3>
+          <ul class="mt-4 space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Map & Directions</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Virtual Tour</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Housing</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Facilities</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h3 class="text-lg font-semibold">Connect</h3>
+          <ul class="mt-4 space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">News & Events</a></li>
+          </ul>
+          <div class="mt-4 flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
           </div>
         </div>
-      </footer>
-    
-    </body>
-    </html>
+      </div>
+
+      <!-- Social Media and Copyright -->
+      <div class="mt-4 pt-4 border-t border-gray-800 text-center text-gray-400">
+        <p>© 2025 BATU University. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuButton = document.querySelector('.mobile-menu-button');
+      const mobileMenu = document.querySelector('#mobile-menu');
+
+      if (menuButton && mobileMenu) {
+        // Handle both click and touchstart for better mobile support
+        ['click', 'touchstart'].forEach(eventType => {
+          menuButton.addEventListener(eventType, (e) => {
+            e.preventDefault(); // Prevent default touch behavior
+            const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+            menuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
+          }, { passive: false });
+        });
+      }
+    });
+
+
+
+    window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('nav');
+  if (window.scrollY > 50) {
+    navbar.classList.add('navbar-scrolled');
+  } else {
+    navbar.classList.remove('navbar-scrolled');
+  }
+});
+  </script>
+</body>
+</html>
