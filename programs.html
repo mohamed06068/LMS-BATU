@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs - BATU University</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Enhanced Gradients and Colors */
+    .hero-gradient {
+      background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+    }
+    .card-hover {
+      transform: translateY(0);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Enhanced Buttons */
+    .btn-primary {
+      background: linear-gradient(to right, #2563EB, #4F46E5);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(to right, #1D4ED8, #4338CA);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Pulse Animation */
+    @keyframes pulse-blue {
+      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+    .pulse-anim {
+      animation: pulse-blue 2s infinite;
+    }
+
+    /* Filter Buttons */
+    .filter-btn {
+      transition: all 0.3s ease;
+    }
+    .filter-btn.active {
+      background: linear-gradient(to right, #2563EB, #4F46E5);
+    }
+    .filter-btn:hover:not(.active) {
+      background: #E5E7EB;
+      transform: translateY(-2px);
+    }
+
+    /* Enhanced Cards */
+    .enhanced-card {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+    }
+    .enhanced-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .enhanced-card.undergraduate { border-left-color: #3B82F6; }
+    .enhanced-card.graduate { border-left-color: #8B5CF6; }
+    .nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #3B82F6;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+.active-link::after {
+  width: 100%;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #2563EB, #4F46E5);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary:hover {
+  background: linear-gradient(to right, #1D4ED8, #4338CA);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+.btn-primary:hover::after {
+  left: 100%;
+}
+  </style>
+</head>
+<body class="font-sans bg-gray-50">
+  <!-- Enhanced Navigation -->
+<nav class="bg-white shadow-lg fixed w-full z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-20">
+      <div class="flex items-center">
+        <div class="flex-shrink-0 flex items-center">
+          <svg class="h-10 w-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+            <path d="M12 14l6.16-3.42a12 12 0 01.2 1.38A12 12 0 0112 20.8a12 12 0 01-6.36-2.04v-.02l6.36-3.74z"></path>
+          </svg>
+          <span class="ml-3 text-2xl font-bold text-gray-800">BATU University</span>
+        </div>
+        <div class="hidden md:ml-12 md:flex md:space-x-10">
+          <a href="index.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+            Home
+          </a>
+          <a href="about.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+            About
+          </a>
+          <a href="programs.html" class="nav-link active-link text-blue-600 inline-flex items-center px-1 pt-1 text-sm font-medium">
+            Programs
+          </a>
+          <a href="#" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+            Research
+          </a>
+          <a href="#" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+            Campus
+          </a>
+          <a href="#" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+            Admissions
+          </a>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center">
+        <a href="login-form/SignUp_LogIn_Form.html" class="nav-link text-gray-500 hover:text-gray-900 inline-flex items-center px-2 pt-01 text-m font-medium">
+          Login
+        </a>
+        <a href="#" class="ml-5 px-6 py-3 rounded-full text-sm font-medium text-white btn-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Apply Now
+        </a>
+      </div>
+      <div class="flex items-center md:hidden">
+        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- Enhanced Hero Section -->
+  <div class="hero-gradient text-white pt-32 pb-20 relative overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <svg class="absolute right-0 top-0 h-full w-full transform translate-x-1/3" viewBox="0 0 800 800" fill="none">
+        <circle cx="400" cy="400" r="300" fill="url(#grad1)" fill-opacity="0.2"/>
+        <circle cx="400" cy="400" r="200" fill="url(#grad2)" fill-opacity="0.2"/>
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 relative z-10">
+      <div class="text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 bg-clip-text bg-gradient-to-r from-white to-blue-200">
+          Explore Our Programs
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-light leading-relaxed text-blue-100">
+          Discover cutting-edge programs designed to prepare you for the tech-driven future.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-10">
+          <a href="#" class="px-8 py-4 rounded-full text-blue-600 bg-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            Take a Virtual Tour
+          </a>
+          <a href="#" class="px-8 py-4 rounded-full text-white bg-blue-700 bg-opacity-50 backdrop-filter backdrop-blur font-bold border border-blue-300 border-opacity-20 shadow-lg hover:shadow-xl hover:bg-opacity-70 transition-all duration-300 transform hover:-translate-y-1">
+            Discover Programs
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 140"><path fill="#ffffff" fill-opacity="1" d="M0,96L60,85.3C120,75,240,53,360,64C480,75,600,117,720,122.7C840,128,960,96,1080,80C1200,64,1320,64,1380,64L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+  </div>
+<!-- Enhanced Academic Programs Section -->
+<div class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <span class="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold uppercase mb-3">
+        Academic Excellence
+      </span>
+      <h2 class="text-4xl font-extrabold text-gray-900 mb-6">
+        Our Programs
+      </h2>
+      <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+        Discover cutting-edge programs designed for the tech-driven future.
+      </p>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mt-6"></div>
+    </div>
+
+    <!-- Enhanced Filter Section -->
+    <div class="mt-8 flex flex-col sm:flex-row justify-center gap-8">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Level</label>
+        <div class="flex space-x-3">
+          <button class="filter-btn active px-5 py-2 rounded-full text-sm font-medium text-white" data-filter="all-level">All</button>
+          <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-800" data-filter="undergraduate">Undergraduate</button>
+          <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-800" data-filter="graduate">Graduate</button>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Discipline</label>
+        <div class="flex space-x-3 flex-wrap gap-y-3">
+          <button class="filter-btn active px-5 py-2 rounded-full text-sm font-medium text-white" data-filter="all-discipline">All</button>
+          <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-800" data-filter="engineering">Engineering</button>
+          <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-800" data-filter="computer-science">Computer Science</button>
+          <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-800" data-filter="data-science">Data Science</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced Programs Grid -->
+    <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="program-card enhanced-card card-hover undergraduate" data-level="undergraduate" data-discipline="computer-science">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">B.S. Computer Science</h3>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Undergrad</span>
+          </div>
+          <div class="flex items-center text-gray-600 mb-4">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p>4 years</p>
+          </div>
+          <p class="text-gray-600 mb-6">
+            Comprehensive program covering fundamentals of computer science and emerging technologies.
+          </p>
+          <a href="#" class="btn-primary text-white px-6 py-3 rounded-full font-medium">Learn More</a>
+        </div>
+      </div>
+
+      <div class="program-card enhanced-card card-hover graduate" data-level="graduate" data-discipline="computer-science">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">M.S. Artificial Intelligence</h3>
+            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Graduate</span>
+          </div>
+          <div class="flex items-center text-gray-600 mb-4">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p>2 years</p>
+          </div>
+          <p class="text-gray-600 mb-6">
+            Advanced study of machine learning and intelligent systems with research opportunities.
+          </p>
+          <a href="#" class="btn-primary text-white px-6 py-3 rounded-full font-medium">Learn More</a>
+        </div>
+      </div>
+
+      <div class="program-card enhanced-card card-hover undergraduate" data-level="undergraduate" data-discipline="data-science">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">B.S. Data Science</h3>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Undergrad</span>
+          </div>
+          <div class="flex items-center text-gray-600 mb-4">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p>4 years</p>
+          </div>
+          <p class="text-gray-600 mb-6">
+            Interdisciplinary program combining statistics and programming for data insights.
+          </p>
+          <a href="#" class="btn-primary text-white px-6 py-3 rounded-full font-medium">Learn More</a>
+        </div>
+      </div>
+
+      <div class="program-card enhanced-card card-hover undergraduate" data-level="undergraduate" data-discipline="engineering">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">B.S. Robotics Engineering</h3>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Undergrad</span>
+          </div>
+          <div class="flex items-center text-gray-600 mb-4">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p>4 years</p>
+          </div>
+          <p class="text-gray-600 mb-6">
+            Design and build autonomous systems and robots with cutting-edge technology.
+          </p>
+          <a href="#" class="btn-primary text-white px-6 py-3 rounded-full font-medium">Learn More</a>
+        </div>
+      </div>
+
+      <div class="program-card enhanced-card card-hover graduate" data-level="graduate" data-discipline="data-science">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">Ph.D. Data Science</h3>
+            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Graduate</span>
+          </div>
+          <div class="flex items-center text-gray-600 mb-4">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p>4-5 years</p>
+          </div>
+          <p class="text-gray-600 mb-6">
+            Research-focused program in advanced analytics and big data applications.
+          </p>
+          <a href="#" class="btn-primary text-white px-6 py-3 rounded-full font-medium">Learn More</a>
+        </div>
+      </div>
+
+      <div class="program-card enhanced-card card-hover graduate" data-level="graduate" data-discipline="engineering">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-gray-900">M.S. Biomedical Engineering</h3>
+            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Graduate</span>
+          </div>
+          <div class="flex items-center text-gray-600 mb-4">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p>2 years</p>
+          </div>
+          <p class="text-gray-600 mb-6">
+            Innovative medical devices and technologies for healthcare advancement.
+          </p>
+          <a href="#" class="btn-primary text-white px-6 py-3 rounded-full font-medium">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Enhanced CTA Section -->
+<div class="bg-gradient-to-r from-blue-700 to-purple-700 text-white">
+  <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 lg:flex lg:items-center lg:justify-between">
+    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+      <span class="block">Ready to Start Your Journey?</span>
+      <span class="block text-blue-200">Join our innovative community today.</span>
+    </h2>
+    <div class="mt-8 flex lg:mt-0 gap-4">
+      <a href="#" class="btn-primary px-6 py-3 rounded-full text-white font-medium shadow-lg">
+        Apply Now
+      </a>
+      <a href="#" class="px-6 py-3 rounded-full text-white bg-opacity-50 border border-white font-medium">
+        Request Info
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Enhanced Footer -->
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center">
+          <svg class="h-8 w-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+            <path d="M12 14l6.16-3.42a12 12 0 01.2 1.38A12 12 0 0112 20.8a12 12 0 01-6.36-2.04v-.02l6.36-3.74z"></path>
+          </svg>
+          <span class="ml-3 text-xl font-bold">BATU University </span>
+        </div>
+        <p class="mt-4 text-gray-400">Pioneering technology education since 2005.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold">Programs</h3>
+        <ul class="mt-4 space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white">Computer Science</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Artificial Intelligence</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Data Science</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Biotechnology</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold">Campus</h3>
+        <ul class="mt-4 space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white">Map & Directions</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Virtual Tour</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Housing</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Facilities</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold">Connect</h3>
+        <ul class="mt-4 space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">News & Events</a></li>
+        </ul>
+        <div class="mt-4 flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+      <p>© 2025 BATU University. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const programCards = document.querySelectorAll('.program-card');
+    let activeFilters = { level: 'all-level', discipline: 'all-discipline' };
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const filterValue = this.getAttribute('data-filter');
+        
+        if (filterValue.includes('all-level')) activeFilters.level = 'all-level';
+        else if (filterValue.includes('undergraduate') || filterValue.includes('graduate')) activeFilters.level = filterValue;
+        
+        if (filterValue.includes('all-discipline')) activeFilters.discipline = 'all-discipline';
+        else if (filterValue.includes('engineering') || filterValue.includes('computer-science') || filterValue.includes('data-science')) activeFilters.discipline = filterValue;
+
+        const category = this.parentElement;
+        category.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active', 'text-white');
+          btn.classList.add('bg-gray-200', 'text-gray-800');
+        });
+        
+        this.classList.add('active', 'text-white');
+        this.classList.remove('bg-gray-200', 'text-gray-800');
+        
+        filterPrograms();
+      });
+    });
+
+    function filterPrograms() {
+      programCards.forEach(card => {
+        const level = card.getAttribute('data-level');
+        const discipline = card.getAttribute('data-discipline');
+        const levelMatch = activeFilters.level === 'all-level' || activeFilters.level === level;
+        const disciplineMatch = activeFilters.discipline === 'all-discipline' || activeFilters.discipline === discipline;
+        
+        card.style.display = (levelMatch && disciplineMatch) ? 'block' : 'none';
+      });
+    }
+  });
+</script>
+</body>
+</html>
