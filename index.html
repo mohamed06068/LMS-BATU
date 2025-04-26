@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Home - BATU University</title>
+  <title>Home - BATU</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -15,7 +15,9 @@
       --bg-light: #F9FAFB;
       --transition: all 0.3s ease;
     }
-
+    html{
+      scroll-behavior: smooth;
+    }
     * {
       margin: 0;
       padding: 0;
@@ -182,6 +184,24 @@
         font-size: 0.75rem;
       }
     }
+    .logo {
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+    
+    .logo-icon {
+      color: var(--primary-color);
+      font-size: 1.75rem;
+      margin-right: 0.5rem;
+    }
+    
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body class="font-sans bg-gray-50">
@@ -190,32 +210,27 @@
     <div class="container">
       <div class="flex justify-between items-center h-20">
         <!-- Logo -->
-        <div class="flex items-center">
-          <a href="index.html" class="flex-shrink-0 flex items-center">
-            <svg class="h-10 w-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-              <path d="M12 14l6.16-3.42a12 12 0 01.2 1.38A12 12 0 0112 20.8a12 12 0 01-6.36-2.04v-.02l6.36-3.74z"></path>
-            </svg>
-            <span class="ml-3 text-2xl font-bold text-gray-800">BATU University</span>
-          </a>
+        <div class="logo">
+          <a href="index.html"><i class="fas fa-graduation-cap logo-icon"></i></a>
+          <span class="logo-text">BATU</span>
         </div>
+  
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex md:items-center md:space-x-8">
           <a href="index.html" class="nav-link active text-blue-600 text-sm font-medium">Home</a>
           <a href="about.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">About</a>
+          <a href="contact-us-page.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">
+            Contact Us
+          </a>
           <a href="programs.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">Programs</a>
-          <a href="#" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">Research</a>
-          <a href="#" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">Campus</a>
           <a href="Admissions.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">Admissions</a>
-          <a href="login-form/SignUp_LogIn_Form.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">Login</a>
-          <!-- Search Icon -->
-          <button class="text-gray-500 hover:text-gray-900 focus:outline-none" aria-label="Search">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-          </button>
-          <a href="#" class="px-6 py-2 rounded-full text-sm font-medium text-white btn-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Apply Now</a>
+          <a href="student-life.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+            Student Life
+          </a>
+          <a href="login.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium"><i class="fas fa-user"></i> Login</a>
+         
+          <a href="Admissions.html#requirements" class="px-6 py-2 rounded-full text-sm font-medium text-white btn-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Apply Now</a>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -237,20 +252,17 @@
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
           <a href="index.html" class="nav-link active block px-3 py-2 rounded-md text-base font-medium text-blue-600 hover:text-blue-900 hover:bg-gray-50">Home</a>
           <a href="about.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">About</a>
+          <a href="contact-us-page.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">
+            Contact Us
+          </a>
           <a href="programs.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">Programs</a>
-          <a href="#" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">Research</a>
-          <a href="#" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">Campus</a>
           <a href="Admissions.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">Admissions</a>
-          <a href="login-form/SignUp_LogIn_Form.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">Login</a>
-          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">Apply Now</a>
-          <!-- Mobile Search -->
-          <div class="px-3 py-2">
-            <button class="w-full text-left text-gray-500 hover:text-gray-900 flex items-center" aria-label="Search">
-              <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-              </svg>
-              Search
-            </button>
+          <a href="admissions.html" class="nav-link active-link text-blue-600 text-sm font-medium">
+            Student Life
+          </a>
+          <a href="login.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50"><i class="fas fa-user"></i> Login</a>
+          <a href="Admissions.html#requirements" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">Apply Now</a>
+        
           </div>
         </div>
       </div>
@@ -266,19 +278,17 @@
             Shaping the Future Through Technology and Innovation
           </h1>
           <p class="text-lg md:text-xl mb-6">
-            Join a community of innovators, researchers, and future tech leaders at BATU University.
+            Join a community of innovators, researchers, and future tech leaders at BATU.
           </p>
           <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <a href="#" class="px-8 py-4 rounded-full text-blue-600 bg-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <a href="programs.html#programs" class="px-8 py-4 rounded-full text-blue-600 bg-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               Explore Programs
             </a>
-            <a href="#" class="px-8 py-4 rounded-full text-white bg-blue-700 bg-opacity-50 backdrop-filter backdrop-blur font-bold border border-blue-300 border-opacity-20 shadow-lg hover:shadow-xl hover:bg-opacity-70 transition-all duration-300 transform hover:-translate-y-1">
-              Virtual Campus Tour
-            </a>
+           
           </div>
         </div>
         <div class="hidden md:block">
-          <img src="campus.webp" alt="Campus" class="rounded-lg shadow-xl">
+          <img src="assets/campus.webp" alt="Campus" class="rounded-lg shadow-xl">
         </div>
       </div>
     </div>
@@ -382,7 +392,7 @@
           IoT-Enabled Campus Experience
         </p>
         <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-          BATU University leverages cutting-edge IoT technology to create a seamless and efficient campus experience.
+          BATU leverages cutting-edge IoT technology to create a seamless and efficient campus experience.
         </p>
       </div>
 
@@ -519,12 +529,10 @@
         <span class="block text-blue-200">Join our innovative community today.</span>
       </h2>
       <div class="mt-8 flex lg:mt-0 gap-4">
-        <a href="#" class="btn-primary px-6 py-3 rounded-full text-white font-medium shadow-lg">
+        <a href="Admissions.html#requirements" class="btn-primary px-6 py-3 rounded-full text-white font-medium shadow-lg">
           Apply Now
         </a>
-        <a href="#" class="px-6 py-3 rounded-full text-white bg-opacity-50 border border-white font-medium">
-          Request Info
-        </a>
+       
       </div>
     </div>
   </div>
@@ -539,17 +547,17 @@
               <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
               <path d="M12 14l6.16-3.42a12 12 0 01.2 1.38A12 12 0 0112 20.8a12 12 0 01-6.36-2.04v-.02l6.36-3.74z"></path>
             </svg>
-            <span class="ml-3 text-xl font-bold">BATU University</span>
+            <span class="ml-3 text-xl font-bold">BATU</span>
           </div>
           <p class="mt-4 text-gray-400">Pioneering technology education since 2005.</p>
         </div>
         <div>
           <h3 class="text-lg font-semibold">Programs</h3>
           <ul class="mt-4 space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white">Computer Science</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Artificial Intelligence</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Data Science</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Biotechnology</a></li>
+            <li><a href="programs.html#programs" class="text-gray-400 hover:text-white">Computer Science</a></li>
+            <li><a href="programs.html#programs" class="text-gray-400 hover:text-white">Artificial Intelligence</a></li>
+            <li><a href="programs.html#programs" class="text-gray-400 hover:text-white">Data Science</a></li>
+            <li><a href="programs.html#programs" class="text-gray-400 hover:text-white">Biotechnology</a></li>
           </ul>
         </div>
         <div>
@@ -564,8 +572,8 @@
         <div>
           <h3 class="text-lg font-semibold">Connect</h3>
           <ul class="mt-4 space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">News & Events</a></li>
+            <li><a href="contact-us-page.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+            <li><a href="student-life.html#events" class="text-gray-400 hover:text-white">News & Events</a></li>
           </ul>
           <div class="mt-4 flex space-x-4">
             <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
@@ -575,7 +583,7 @@
         </div>
       </div>
       <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-        <p>© 2025 BATU University. All rights reserved.</p>
+        <p>© 2025 BATU. All rights reserved.</p>
       </div>
     </div>
   </footer>
