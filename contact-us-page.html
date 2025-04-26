@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - BATU University</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2563EB;
+      --secondary-color: #1E40AF;
+      --text-dark: #1F2937;
+      --text-light: #6B7280;
+      --bg-light: #F9FAFB;
+      --transition: all 0.3s ease;
+    }
+    html{
+      scroll-behavior: smooth;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      padding-top: 70px; /* Space for fixed navbar */
+    }
+    
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    .navbar.scrolled {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      transition: var(--transition);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+    
+    .logo-icon {
+      color: var(--primary-color);
+      font-size: 1.75rem;
+      margin-right: 0.5rem;
+    }
+    
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      white-space: nowrap;
+    }
+    
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      transition: var(--transition);
+    }
+    
+    .nav-item {
+      position: relative;
+      margin: 0 0.75rem;
+    }
+    
+    .nav-link {
+      display: block;
+      padding: 0.5rem;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    
+    .nav-link:hover, 
+    .nav-link.active {
+      color: var(--primary-color);
+    }
+    
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary-color);
+    }
+    
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+    
+    .login-btn {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      margin-right: 0.5rem;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+    
+    .login-btn:hover {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+      background-color: rgba(37, 99, 235, 0.05);
+    }
+    
+    .login-btn i {
+      margin-right: 0.5rem;
+    }
+    
+    .apply-btn {
+      padding: 0.6rem 1.25rem;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border-radius: 9999px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    
+    .apply-btn:hover {
+      background-color: var(--secondary-color);
+    }
+    
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      z-index: 10;
+    }
+    
+    .navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 1200px) {
+      .nav-center {
+        position: relative;
+        left: auto;
+        transform: none;
+      }
+      
+      .nav-wrapper {
+        justify-content: space-between;
+      }
+    }
+    
+    @media (max-width: 1024px) {
+      .nav-item {
+        margin: 0 0.5rem;
+      }
+      
+      .nav-link, .login-btn {
+        font-size: 0.9rem;
+      }
+      
+      .apply-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .nav-center {
+        display: none;
+      }
+      
+      .nav-buttons-desktop {
+        display: none;
+      }
+      
+      .mobile-toggle {
+        display: block;
+      }
+      
+      .mobile-menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        opacity: 0;
+        transform: translateY(-20px);
+        visibility: hidden;
+      }
+      
+      .mobile-menu.active {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+      }
+      
+      .mobile-nav-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .mobile-nav-item {
+        border-bottom: 1px solid #E5E7EB;
+      }
+      
+      .mobile-nav-link {
+        display: block;
+        padding: 1rem 1.5rem;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+      
+      .mobile-nav-link:hover,
+      .mobile-nav-link.active {
+        background-color: #F3F4F6;
+        color: var(--primary-color);
+      }
+      
+      .mobile-nav-link.active {
+        border-left: 4px solid var(--primary-color);
+      }
+      
+      .mobile-buttons {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #E5E7EB;
+      }
+      
+      .mobile-login-btn {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .mobile-login-btn i {
+        margin-right: 0.5rem;
+      }
+      
+      .mobile-apply-btn {
+        padding: 0.75rem 1.5rem;
+        background-color: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        border-radius: 9999px;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .nav-wrapper {
+        height: 60px;
+      }
+      
+      .logo-icon {
+        font-size: 1.5rem;
+      }
+      
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      
+      .mobile-menu {
+        top: 60px;
+      }
+    }
+    
+    /* Ensure menu visibility on desktop during zooming */
+    @media (min-width: 993px) {
+      .nav-center,
+      .nav-buttons-desktop {
+        display: flex !important;
+      }
+      
+      .mobile-menu {
+        display: none !important;
+      }
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #3B82F6;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .active-link::after {
+      width: 100%;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(to right, #2563EB, #4F46E5);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(to right, #1D4ED8, #4338CA);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+    }
+    
+    .btn-primary:hover::after {
+      left: 100%;
+    }
+
+    /* Contact page specific styles */
+    .contact-info-icon {
+      background: var(--primary-color);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.15);
+      transition: transform 0.3s ease;
+    }
+    
+    .contact-card:hover .contact-info-icon {
+      transform: scale(1.1);
+    }
+    
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    
+    .gmap-container {
+      height: 400px;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    @media (max-width: 768px) {
+      .gmap-container {
+        height: 300px;
+      }
+    }
+    
+    .contact-heading {
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .contact-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+    
+    .social-link {
+      background-color: #EFF6FF;
+      color: var(--primary-color);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background-color: var(--primary-color);
+      color: white;
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50">
+  
+<!-- Enhanced Navigation -->
+<header class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-wrapper">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="index.html"><i class="fas fa-graduation-cap logo-icon"></i></a>
+        <span class="logo-text">BATU</span>
+      </div>
+
+      
+      <!-- Centered Desktop Navigation -->
+      <div class="nav-center">
+        <ul class="nav-links" id="nav-links">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link active">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="programs.html" class="nav-link">Programs</a>
+          </li>
+          <li class="nav-item">
+            <a href="Admissions.html" class="nav-link">Admissions</a>
+          </li>
+          <li class="nav-item">
+            <a href="student-life.html" class="nav-link">Student Life</a>
+          </li>
+         
+        </ul>
+      </div>
+      
+      <!-- Desktop Buttons -->
+      <div class="nav-buttons nav-buttons-desktop">
+        <a href="login.html" class="login-btn">
+          <i class="fas fa-user"></i>Login
+        </a>
+        <a href="Admissions.html#requirements" class="apply-btn">Apply Now</a>
+      </div>
+      
+      <!-- Mobile Toggle Button -->
+      <button class="mobile-toggle" id="mobile-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="mobile-nav-links">
+        <li class="mobile-nav-item">
+          <a href="index.html" class="mobile-nav-link">Home</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="about.html" class="mobile-nav-link">About</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#" class="mobile-nav-link active">Contact Us</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="programs.html" class="mobile-nav-link">Programs</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="Admissions.html" class="mobile-nav-link">Admissions</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="student-life.html" class="mobile-nav-link">Student Life</a>
+        </li>
+      </ul>
+      <div class="mobile-buttons">
+        <a href="login.html" class="mobile-login-btn">
+          <i class="fas fa-user"></i>Login
+        </a>
+        <a href="Admissions.html#requirements" class="mobile-apply-btn">Apply Now</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Contact Hero Section -->
+<div class="hero-gradient text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+    <div class="text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+        Contact Us
+      </h1>
+      <p class="text-lg md:text-xl max-w-3xl mx-auto">
+        We're here to answer your questions and help you navigate your educational journey. Reach out to us through any of the channels below.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Info Cards -->
+<div class="bg-white py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Address Card -->
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center contact-card hover:shadow-xl transition-all duration-300">
+        <div class="flex justify-center">
+          <div class="contact-info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-gray-800">Our Location</h3>
+        <p class="text-gray-600">
+          Unnamed Road, Hod Sakrah WA Abu Hamad
+          <br>Borg El Arab,
+          <br> Alexandria Governorate 5220211<br>
+          Egypt
+        </p>
+      </div>
+
+      <!-- Phone Card -->
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center contact-card hover:shadow-xl transition-all duration-300">
+        <div class="flex justify-center">
+          <div class="contact-info-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-gray-800">Phone Numbers</h3>
+        <p class="text-gray-600">
+          Main: +20 123 456 7890<br>
+          Admissions: +20 123 456 7891<br>
+          Student Affairs: +20 123 456 7892
+        </p>
+      </div>
+
+      <!-- Email Card -->
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center contact-card hover:shadow-xl transition-all duration-300">
+        <div class="flex justify-center">
+          <div class="contact-info-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-gray-800">Email Us</h3>
+        <p class="text-gray-600">
+          General Inquiries:<br>
+          <a href="https://www.facebook.com/permalink.php/?story_fbid=254515730754593&id=100085885038638&locale=ar_AR" class="text-blue-600 hover:underline">info@batu.edu</a><br>
+          Admissions:<br>
+          <a href="https://www.facebook.com/permalink.php/?story_fbid=254515730754593&id=100085885038638&locale=ar_AR" class="text-blue-600 hover:underline">admissions@batu.edu</a>
+        </p>
+      </div>
+
+      <!-- Hours Card -->
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center contact-card hover:shadow-xl transition-all duration-300">
+        <div class="flex justify-center">
+          <div class="contact-info-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-gray-800">Working Hours</h3>
+        <p class="text-gray-600">
+          saturday - Thursday:<br>
+          8:00 AM - 5:00 PM<br>
+          Friday:<br>
+          1:00 AM - 4:00 PM
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Map and Contact Form Section -->
+<div class="py-12 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Google Map -->
+      <div>
+        <h2 class="text-3xl font-bold mb-6 text-gray-900 contact-heading">Find Us</h2>
+        <div class="gmap-container">
+          <iframe
+              src="https://www.google.com/maps/embed?pb=YOUR_MAP_LINK_HERE"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+              
+      </div>
+      
+      <!-- Contact Form -->
+      <div>
+        <h2 class="text-3xl font-bold mb-6 text-gray-900 contact-heading">Send Us a Message</h2>
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <form class="contact-form">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <!-- First Name -->
+              <div>
+                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <input type="text" id="firstName" name="firstName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+              </div>
+              
+              <!-- Last Name -->
+              <div>
+                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <input type="text" id="lastName" name="lastName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+              </div>
+            </div>
+            
+            <!-- Email -->
+            <div class="mb-6">
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            
+            <!-- Phone -->
+            <div class="mb-6">
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            
+            <!-- Subject -->
+            <div class="mb-6">
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+              <select id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                <option value="">Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="admissions">Admissions</option>
+                <option value="programs">Programs</option>
+                <option value="financial">Financial Aid</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <!-- Message -->
+            <div class="mb-6">
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+              <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
+            </div>
+            
+            <!-- Submit Button -->
+            <div>
+              <button type="submit" class="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300">
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Department Contacts Section -->
+<div class="py-12 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900">Department Contacts</h2>
+      <p class="mt-4 text-lg text-gray-600">Connect directly with specific departments for specialized assistance.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Academic Affairs -->
+      <div class="bg-blue-50 p-6 rounded-lg hover:shadow-lg transition-all duration-300">
+        <h3 class="text-xl font-semibold mb-3 text-blue-800">Academic Affairs</h3>
+        <p class="text-gray-700 mb-4">For curriculum, course registration, and academic policies.</p>
+        <p class="text-gray-700"><strong>Email:</strong> <a href="mailto:academic@batu.edu" class="text-blue-600 hover:underline">academic@batu.edu</a></p>
+        <p class="text-gray-700"><strong>Phone:</strong> +20 123 456 7893</p>
+      </div>
+      
+      <!-- Student Services -->
+      <div class="bg-blue-50 p-6 rounded-lg hover:shadow-lg transition-all duration-300">
+        <h3 class="text-xl font-semibold mb-3 text-blue-800">Student Services</h3>
+        <p class="text-gray-700 mb-4">For campus life, housing, and student activities.</p>
+        <p class="text-gray-700"><strong>Email:</strong> <a href="mailto:student.services@batu.edu" class="text-blue-600 hover:underline">student.services@batu.edu</a></p>
+        <p class="text-gray-700"><strong>Phone:</strong> +20 123 456 7894</p>
+      </div>
+      
+      <!-- Financial Aid -->
+      <div class="bg-blue-50 p-6 rounded-lg hover:shadow-lg transition-all duration-300">
+        <h3 class="text-xl font-semibold mb-3 text-blue-800">Financial Aid</h3>
+        <p class="text-gray-700 mb-4">For scholarships, grants, and payment information.</p>
+        <p class="text-gray-700"><strong>Email:</strong> <a href="mailto:financial.aid@batu.edu" class="text-blue-600 hover:underline">financial.aid@batu.edu</a></p>
+        <p class="text-gray-700"><strong>Phone:</strong> +20 123 456 7895</p>
+      </div>
+      
+      <!-- Career Services -->
+      <div class="bg-blue-50 p-6 rounded-lg hover:shadow-lg transition-all duration-300">
+        <h3 class="text-xl font-semibold mb-3 text-blue-800">Career Services</h3>
+        <p class="text-gray-700 mb-4">For internships, job placements, and career counseling.</p>
+        <p class="text-gray-700"><strong>Email:</strong> <a href="mailto:careers@batu-university.edu.eg" class="text-blue-600 hover:underline">careers@batu-university.edu.eg</a></p>
+        <p class="text-gray-700"><strong>Phone:</strong> +20 123 456 7896</p>
+      </div>
+      
+      <!-- International Office -->
+      <div class="bg-blue-50 p-6 rounded-lg hover:shadow-lg transition-all duration-300">
+        <h3 class="text-xl font-semibold mb-3 text-blue-800">International Office</h3>
+        <p class="text-gray-700 mb-4">For international student support and exchange programs.</p>
+        <p class="text-gray-700"><strong>Email:</strong> <a href="mailto:international@batu-university.edu.eg" class="text-blue-600 hover:underline">international@batu-university.edu.eg</a></p>
+        <p class="text-gray-700"><strong>Phone:</strong> +20 123 456 7897</p>
+      </div>
+      
+      <!-- IT Support -->
+      <div class="bg-blue-50 p-6 rounded-lg hover:shadow-lg transition-all duration-300">
+        <h3 class="text-xl font-semibold mb-3 text-blue-800">IT Support</h3>
+        <p class="text-gray-700 mb-4">For technical support and university systems access.</p>
+        <p class="text-gray-700"><strong>Email:</strong> <a href="mailto:itsupport@batu-university.edu.eg" class="text-blue-600 hover:underline">itsupport@batu-university.edu.eg</a></p>
+        <p class="text-gray-700"><strong>Phone:</strong> +20 123 456 7898</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer Section -->
+<footer class="bg-gray-900 text-white py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- University Info -->
+      <div>
+        <div class="flex items-center mb-4">
+          <i class="fas fa-graduation-cap text-2xl text-blue-500 mr-2"></i>
+          <span class="text-xl font-bold">BATU University</span>
+        </div>
+        <p class="text-gray-400">
+          Borg El Arab Technological University, Alexandria, Egypt. Committed to excellence in education and research.
+        </p>
+      </div>
+      
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="text-gray-400 hover:text-blue-500 transition">Home</a></li>
+          <li><a href="about.html" class="text-gray-400 hover:text-blue-500 transition">About</a></li>
+          <li><a href="programs.html" class="text-gray-400 hover:text-blue-500 transition">Programs</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-blue-500 transition">Admissions</a></li>
+          <li><a href="contact.html" class="text-gray-400 hover:text-blue-500 transition">Contact</a></li>
+        </ul>
+      </div>
+      
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+        <ul class="space-y-2">
+          <li class="flex items-center">
+            <i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>
+            <span class="text-gray-400">Borg El Arab, Alexandria, Egypt</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-phone-alt text-blue-500 mr-2"></i>
+            <span class="text-gray-400">+20 123 456 7890</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-envelope text-blue-500 mr-2"></i>
+            <a href="mailto:info@batu-university.edu.eg" class="text-gray-400 hover:text-blue-500 transition">info@batu-university.edu.eg</a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Social Media -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+        <div class="flex space-x-4">
+          <a href="https://www.facebook.com/permalink.php/?story_fbid=254515730754593&id=100085885038638&locale=ar_AR" class="social-link bg-blue-800 hover:bg-blue-700">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-link bg-blue-800 hover:bg-blue-700">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-link bg-blue-800 hover:bg-blue-700">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/borg-al-arab-technological-university" class="social-link bg-blue-800 hover:bg-blue-700">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://www.youtube.com/@batu1022" class="social-link bg-blue-800 hover:bg-blue-700">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Copyright -->
+    <div class="mt-12 border-t border-gray-700 pt-6 text-center">
+      <p class="text-gray-400">&copy; 2025 BATU University. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript for Mobile Menu Toggle -->
+<script>
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navbar = document.getElementById('navbar');
+
+  mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    mobileToggle.querySelector('i').classList.toggle('fa-bars');
+    mobileToggle.querySelector('i').classList.toggle('fa-times');
+  });
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>
+</body>
+</html>

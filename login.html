@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>BATU - Login System</title>
+    <style>
+       html{
+      scroll-behavior: smooth;
+    }
+      :root {
+        --primary-color: #2563EB;
+        --secondary-color: #640f88;
+        --background-gradient: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        --border-radius: 8px;
+        --input-border: 1px solid #ddd;
+        --transition-speed: 0.3s;
+        --navbar-height: 70px;
+        --navbar-bg: #fff;
+        --navbar-color: #333;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: var(--background-gradient);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding-top: var(--navbar-height);
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--navbar-height);
+        background-color: var(--navbar-bg);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        padding: 0 clamp(15px, 5vw, 50px);
+        z-index: 1000;
+      }
+      .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 0.5rem;
+      font-size: 0.95rem;
+
+    }
+      .navbar-logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-logo h2 {
+        color: var(--primary-color);
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        letter-spacing: 1px;
+      }
+
+      .navbar-logo span {
+        color: var(--secondary-color);
+      }
+
+      .navbar-links {
+        display: flex;
+        list-style: none;
+        justify-content: center; /* Center the links */
+        grid-column: 2; /* Place in middle column */
+      }
+
+      .navbar-links li {
+        margin: 0 clamp(10px, 2vw, 20px); /* Equal margin on both sides */
+        position: relative;
+      }
+
+      .navbar-links a {
+        color: var(--navbar-color);
+        text-decoration: none;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        font-weight: 500;
+        padding: 8px 0;
+        display: block;
+        position: relative;
+      }
+
+      /* Animation for underline from left to right */
+      .navbar-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+
+      .navbar-links a:hover::after {
+        width: 100%;
+      }
+
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: space-between;
+        justify-self: end;
+
+        width: 30px;
+        height: 20px;
+        grid-column: 3;
+      }
+
+      .hamburger span {
+        height: 3px;
+        width: 100%;
+        background-color: var(--navbar-color);
+        border-radius: 3px;
+        transition: all 0.3s ease;
+      }
+
+      /* Main content styles */
+      .main-content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+      }
+
+      .container {
+        background-color: white;
+        width: 100%;
+        max-width: 450px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        overflow: hidden;
+        margin: 0 auto;
+      }
+
+      .tabs {
+        display: flex;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+      }
+
+      .tab {
+        flex: 1;
+        text-align: center;
+        padding: 1rem;
+        cursor: pointer;
+        background-color: #f8f8f8;
+        transition: background-color var(--transition-speed);
+        font-size: clamp(0.8rem, 2vw, 1rem);
+      }
+
+      .tab:first-child {
+        border-top-left-radius: var(--border-radius);
+      }
+
+      .tab:last-child {
+        border-top-right-radius: var(--border-radius);
+      }
+
+      .tab.active {
+        background-color: white;
+        font-weight: bold;
+      }
+
+      .form-container {
+        padding: clamp(15px, 5vw, 30px);
+      }
+
+      .form {
+        display: none;
+      }
+
+      .form.active {
+        display: block;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 1.2rem;
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+      }
+
+      .input-group {
+        margin-bottom: clamp(15px, 3vw, 20px);
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 0.4rem;
+        color: #555;
+        font-size: clamp(0.85rem, 2.5vw, 1rem);
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: clamp(10px, 2.5vw, 12px);
+        border: var(--input-border);
+        border-radius: calc(var(--border-radius) - 3px);
+        outline: none;
+        transition: border var(--transition-speed);
+        font-size: clamp(0.85rem, 2.5vw, 1rem);
+      }
+
+      .input-group input:focus {
+        border-color: var(--primary-color);
+      }
+
+      button {
+        width: 100%;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: clamp(10px, 3vw, 12px);
+        border-radius: calc(var(--border-radius) - 3px);
+        cursor: pointer;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        font-weight: bold;
+        transition: background-color var(--transition-speed);
+        margin-top: 0.5rem;
+        height: auto;
+        min-height: 44px;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      .form-footer {
+        text-align: center;
+        margin-top: clamp(15px, 4vw, 20px);
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+      }
+
+      .form-footer a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .form-footer a:hover {
+        text-decoration: underline;
+      }
+
+      .university-logo {
+        text-align: center;
+        margin-bottom: clamp(15px, 4vw, 25px);
+      }
+
+      .university-logo h2 {
+        color: var(--primary-color);
+        font-size: clamp(1.5rem, 5vw, 1.9rem);
+        letter-spacing: 1px;
+      }
+
+      .university-logo span {
+        color: var(--secondary-color);
+      }
+
+      /* Mobile responsive styles */
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+          grid-column: 2;
+        }
+        .navbar {
+          grid-template-columns: 1fr 1fr; /* Two columns for mobile */
+        }
+
+        .navbar-logo {
+          grid-column: 1;
+        }
+        .navbar-links {
+          position: absolute;
+          top: var(--navbar-height);
+          left: 0;
+          width: 100%;
+          background-color: var(--navbar-bg);
+          flex-direction: column;
+          align-items: center;
+          padding: 20px 0;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+          transform: translateY(-150%);
+          transition: transform 0.3s ease;
+          z-index: 999;
+          grid-column: 1 / span 2; /* Span all columns */
+        }
+
+        .navbar-links.active {
+          transform: translateY(0);
+        }
+
+        .navbar-links li {
+          margin: 10px 0;
+          width: 100%;
+          text-align: center;
+        }
+
+        .navbar-links a {
+          padding: 10px 0;
+        }
+      }
+
+      /* Additional mobile-specific adjustments */
+      @media (max-width: 480px) {
+        .container {
+          border-radius: calc(var(--border-radius) - 2px);
+        }
+
+        .form-container {
+          padding: 15px;
+        }
+
+        .tab {
+          padding: 12px 5px;
+        }
+
+        button,
+        .input-group input {
+          min-height: 44px;
+        }
+      }
+
+      /* Super small screens */
+      @media (max-width: 320px) {
+        .main-content {
+          padding: 20px 10px;
+        }
+
+        .form-container {
+          padding: 12px;
+        }
+
+        .university-logo {
+          margin-bottom: 12px;
+        }
+
+        .input-group {
+          margin-bottom: 12px;
+        }
+      }
+      .logo {
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+    
+    .logo-icon {
+      color: var(--primary-color);
+      font-size: 1.75rem;
+      margin-right: 0.5rem;
+    }
+    
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      white-space: nowrap;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="flex items-center">
+        <div class="logo">
+          <a href="index.html"><i class="fas fa-graduation-cap logo-icon"></i></a>
+          <span class="logo-text">BATU</span>
+        </div>
+  
+      </div>
+
+      <ul class="navbar-links">
+        <li><a href="index.html" class="navbar-links text-gray-500 hover:text-gray-900 text-sm font-medium">Home</a></li>
+        <li><a href="about.html"class="navbar-links text-gray-500 hover:text-gray-900 text-sm font-medium">About</a></li>
+        <li><a href="contact-us-page.html"class="navbar-links text-gray-500 hover:text-gray-900 text-sm font-medium">Contact Us</a></li>
+       
+        <li><a href="programs.html"class="navbar-links text-gray-500 hover:text-gray-900 text-sm font-medium">Programs</a></li>
+        <li><a href="Admissions.html"class="navbar-links text-gray-500 hover:text-gray-900 text-sm font-medium">Admissions</a></li>
+        <li><a href="student-life.html"class="navbar-links text-gray-500 hover:text-gray-900 text-sm font-medium">Student Life</a></li>
+
+
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="container">
+        <div class="tabs">
+          <div class="tab active" data-form="login">Login</div>
+          <div class="tab" data-form="register">Register</div>
+          <div class="tab" data-form="forgot">Reset</div>
+        </div>
+
+        <div class="form-container">
+          <div class="university-logo">
+            <h2>BATU</h2>
+          </div>
+
+          <!-- Login Form -->
+          <div class="form active" id="login">
+            <h1>Sign In to Your Account</h1>
+            <form>
+              <div class="input-group">
+                <label for="login-email">Student ID / Email</label>
+                <input
+                  type="text"
+                  id="login-email"
+                  placeholder="Enter your student ID or email"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <label for="login-password">Password</label>
+                <input
+                  type="password"
+                  id="login-password"
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+              <button type="submit">Login</button>
+              <div class="form-footer">
+                <p>
+                  Don't have an account?
+                  <a href="#" class="form-link" data-form="register"
+                    >Register</a
+                  >
+                </p>
+                <p>
+                  Forgot password?
+                  <a href="#" class="form-link" data-form="forgot">Reset it</a>
+                </p>
+              </div>
+            </form>
+          </div>
+
+          <!-- Register Form -->
+          <div class="form" id="register">
+            <h1>Create New Account</h1>
+            <form>
+              <div class="input-group">
+                <label for="register-name">Full Name</label>
+                <input
+                  type="text"
+                  id="register-name"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <label for="register-email">Email Address</label>
+                <input
+                  type="email"
+                  id="register-email"
+                  placeholder="Enter your email address"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <label for="register-student-id"
+                  >Student ID (if applicable)</label
+                >
+                <input
+                  type="text"
+                  id="register-student-id"
+                  placeholder="Enter your student ID"
+                />
+              </div>
+              <div class="input-group">
+                <label for="register-password">Password</label>
+                <input
+                  type="password"
+                  id="register-password"
+                  placeholder="Create a password"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <label for="register-confirm-password">Confirm Password</label>
+                <input
+                  type="password"
+                  id="register-confirm-password"
+                  placeholder="Confirm your password"
+                  required
+                />
+              </div>
+              <button type="submit">Register</button>
+              <div class="form-footer">
+                <p>
+                  Already have an account?
+                  <a href="#" class="form-link" data-form="login">Login</a>
+                </p>
+              </div>
+            </form>
+          </div>
+
+          <!-- Forgot Password Form -->
+          <div class="form" id="forgot">
+            <h1>Reset Your Password</h1>
+            <form>
+              <div class="input-group">
+                <label for="forgot-email">Email Address / Student ID</label>
+                <input
+                  type="text"
+                  id="forgot-email"
+                  placeholder="Enter your registered email or ID"
+                  required
+                />
+              </div>
+              <button type="submit">Send Reset Link</button>
+              <div class="form-footer">
+                <p>
+                  Remember your password?
+                  <a href="#" class="form-link" data-form="login">Login</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Tab switching functionality
+      const tabs = document.querySelectorAll(".tab");
+      const forms = document.querySelectorAll(".form");
+      const formLinks = document.querySelectorAll(".form-link");
+
+      function activateTab(tabName) {
+        // Deactivate all tabs and forms
+        tabs.forEach((tab) => tab.classList.remove("active"));
+        forms.forEach((form) => form.classList.remove("active"));
+
+        // Activate the selected tab and form
+        document
+          .querySelector(`.tab[data-form="${tabName}"]`)
+          .classList.add("active");
+        document.getElementById(tabName).classList.add("active");
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          activateTab(tab.getAttribute("data-form"));
+        });
+      });
+
+      formLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          activateTab(link.getAttribute("data-form"));
+        });
+      });
+
+      // Mobile hamburger menu functionality
+      const hamburger = document.querySelector(".hamburger");
+      const navbarLinks = document.querySelector(".navbar-links");
+
+      hamburger.addEventListener("click", () => {
+        navbarLinks.classList.toggle("active");
+        // Animate hamburger to X
+        const spans = hamburger.querySelectorAll("span");
+        spans.forEach((span) => span.classList.toggle("active"));
+      });
+
+      // Form submission (placeholder)
+      document.querySelectorAll("form").forEach((form) => {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          alert(
+            "This is a frontend demo. Connect to your backend to implement actual functionality."
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

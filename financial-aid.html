@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Financial Aid & Scholarships - BATU</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2563EB;
+      --secondary-color: #1E40AF;
+      --text-dark: #1F2937;
+      --text-light: #6B7280;
+      --bg-light: #F9FAFB;
+      --transition: all 0.3s ease;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+    }
+    .card-hover {
+      transform: translateY(0);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .btn-primary {
+      background: linear-gradient(to right, #2563EB, #4F46E5);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(to right, #1D4ED8, #4338CA);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+    }
+    .btn-primary:hover::after {
+      left: 100%;
+    }
+    @keyframes pulse-blue {
+      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+    .pulse-anim {
+      animation: pulse-blue 2s infinite;
+    }
+    .step-card {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+      transition: all 0.3s ease;
+      border-left: 4px solid #3B82F6;
+    }
+    .step-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(to right, #2563EB, #4F46E5);
+      color: white;
+      font-weight: bold;
+    }
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #3B82F6;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .active-link::after {
+      width: 100%;
+    }
+    .navbar-scrolled {
+      height: 64px;
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+    .mobile-menu-button {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-menu-button .block {
+      display: block;
+    }
+    .mobile-menu-button .hidden {
+      display: none;
+    }
+    .mobile-menu-button[aria-expanded="true"] .block {
+      display: none;
+    }
+    .mobile-menu-button[aria-expanded="true"] .hidden {
+      display: block;
+    }
+    #mobile-menu {
+      display: none;
+      position: relative;
+      z-index: 50;
+      width: 100%;
+      overflow: visible;
+    }
+    #mobile-menu.active {
+      display: block;
+    }
+    nav {
+      overflow: visible !important;
+    }
+    .form-input {
+      transition: all 0.3s ease;
+      border: 1px solid #E5E7EB;
+    }
+    .form-input:focus {
+      border-color: #3B82F6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+    .checklist-card {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+      transition: all 0.3s ease;
+      border-left: 4px solid #8B5CF6;
+    }
+    .checklist-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .checklist-item {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #E5E7EB;
+      transition: all 0.3s ease;
+    }
+    .checklist-item:last-child {
+      border-bottom: none;
+    }
+    .checklist-item:hover {
+      background-color: #F3F4F6;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+    .logo-icon {
+      color: var(--primary-color);
+      font-size: 1.75rem;
+      margin-right: 0.5rem;
+    }
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      white-space: nowrap;
+    }
+    /* FAQ Specific Styles */
+    .faq-answer {
+      display: none;
+      transition: all 0.3s ease;
+    }
+    .faq-answer.active {
+      display: block;
+    }
+    .faq-button svg {
+      transition: transform 0.3s ease;
+    }
+    .faq-button.active svg {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50">
+<!-- Enhanced Responsive Navigation -->
+<nav class="bg-white shadow-lg fixed w-full z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="index.html"><i class="fas fa-graduation-cap logo-icon"></i></a>
+        <span class="logo-text">BATU</span>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex md:items-center md:space-x-8">
+        <a href="index.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">Home</a>
+        <a href="about.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">About</a>
+        <a href="contact-us-page.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">Contact Us</a>
+        <a href="programs.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">Programs</a>
+        <a href="admissions.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">Admissions</a>
+        <a href="student-life.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">Student Life</a>
+        <a href="login.html" class="nav-link text-gray-500 hover:text-gray-900 text-sm font-medium">
+          <i class="fas fa-user"></i> Login
+        </a>
+        <a href="financial-aid.html#apply" class="px-6 py-2 rounded-full text-sm font-medium text-white btn-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Apply for Aid</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-6 w-6 block hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg class="h-6 w-6 hidden close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="md:hidden hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
+      <a href="index.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">Home</a>
+      <a href="about.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">About</a>
+      <a href="contact-us-page.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">Contact Us</a>
+      <a href="programs.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">Programs</a>
+      <a href="admissions.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">Admissions</a>
+      <a href="student-life.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">Student Life</a>
+      <a href="login.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50">
+        <i class="fas fa-user"></i> Login
+      </a>
+      <a href="financial-aid.html#apply" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">Apply for Aid</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-gradient text-white pt-32 pb-20 relative overflow-hidden">
+  <div class="absolute inset-0 overflow-hidden">
+    <svg class="absolute right-0 top-0 h-full w-full transform translate-x-1/3" viewBox="0 0 800 800" fill="none">
+      <circle cx="400" cy="400" r="300" fill="url(#grad1)" fill-opacity="0.2"/>
+      <circle cx="400" cy="400" r="200" fill="url(#grad2)" fill-opacity="0.2"/>
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 relative z-10">
+    <div class="text-center">
+      <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 bg-clip-text bg-gradient-to-r from-white to-blue-200">
+        Financial Aid & Scholarships
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-light leading-relaxed text-blue-100">
+        Discover how BATU makes education accessible with our comprehensive financial aid and scholarship programs.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4 mt-10">
+        <a href="#apply" class="px-8 py-4 rounded-full text-blue-600 bg-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          Apply for Aid
+        </a>
+        <a href="#options" class="px-8 py-4 rounded-full text-white bg-blue-700 bg-opacity-50 backdrop-filter backdrop-blur font-bold border border-blue-300 border-opacity-20 shadow-lg hover:shadow-xl hover:bg-opacity-70 transition-all duration-300 transform hover:-translate-y-1">
+          Explore Options
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 140"><path fill="#ffffff" fill-opacity="1" d="M0,96L60,85.3C120,75,240,53,360,64C480,75,600,117,720,122.7C840,128,960,96,1080,80C1200,64,1320,64,1380,64L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+  </div>
+</div>
+
+<!-- Financial Aid Options Section -->
+<div id="options" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <span class="inline-block px-4 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold uppercase mb-3">
+        Support Options
+      </span>
+      <h2 class="text-4xl font-extrabold text-gray-900 mb-6">
+        Financial Aid Options
+      </h2>
+      <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+        Explore the various ways BATU supports your educational journey financially.
+      </p>
+      <div class="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto mt-6"></div>
+    </div>
+
+    <!-- Financial Aid Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+        <div class="h-3 bg-gradient-to-r from-green-400 to-green-600"></div>
+        <div class="p-6">
+          <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Merit Scholarships</h3>
+          <p class="text-gray-600 text-center">Awarded based on academic excellence, leadership, and extracurricular achievements. Scholarships range from $5,000 to full tuition.</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+        <div class="h-3 bg-gradient-to-r from-blue-400 to-blue-600"></div>
+        <div class="p-6">
+          <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Need-Based Aid</h3>
+          <p class="text-gray-600 text-center">Grants, loans, and work-study opportunities based on demonstrated financial need to ensure accessibility.</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+        <div class="h-3 bg-gradient-to-r from-purple-400 to-purple-600"></div>
+        <div class="p-6">
+          <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="h-8 w-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">External Scholarships</h3>
+          <p class="text-gray-600 text-center">Guidance and resources for applying to scholarships from external organizations and foundations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Application Process Section -->
+<div id="apply" class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <span class="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold uppercase mb-3">
+        Get Started
+      </span>
+      <h2 class="text-4xl font-extrabold text-gray-900 mb-6">
+        How to Apply for Financial Aid
+      </h2>
+      <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+        Follow these steps to access financial support for your education at BATU.
+      </p>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mt-6"></div>
+    </div>
+
+    <!-- Application Steps -->
+    <div class="mt-12 space-y-8">
+      <div class="step-card card-hover p-6 flex items-start">
+        <div class="step-number mr-6 flex-shrink-0">1</div>
+        <div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Complete the FAFSA</h3>
+          <p class="text-gray-600">
+            Submit the Free Application for Federal Student Aid (FAFSA) to determine your eligibility for federal and institutional aid. Use BATU's school code: 012345.
+          </p>
+        </div>
+      </div>
+      <div class="step-card card-hover p-6 flex items-start">
+        <div class="step-number mr-6 flex-shrink-0">2</div>
+        <div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Apply for Scholarships</h3>
+          <p class="text-gray-600">
+            Complete BATU's scholarship application form, including essays and recommendation letters, to be considered for merit-based awards.
+          </p>
+        </div>
+      </div>
+      <div class="step-card card-hover p-6 flex items-start">
+        <div class="step-number mr-6 flex-shrink-0">3</div>
+        <div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Submit Additional Documents</h3>
+          <p class="text-gray-600">
+            Provide any required documents, such as tax returns, proof of income, or verification forms, to complete your financial aid profile.
+          </p>
+        </div>
+      </div>
+      <div class="step-card card-hover p-6 flex items-start">
+        <div class="step-number mr-6 flex-shrink-0">4</div>
+        <div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Review Award Letter</h3>
+          <p class="text-gray-600">
+            Receive and review your financial aid award letter, detailing grants, scholarships, loans, and work-study opportunities.
+          </p>
+        </div>
+      </div>
+      <div class="step-card card-hover p-6 flex items-start">
+        <div class="step-number mr-6 flex-shrink-0">5</div>
+        <div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Accept Aid Offer</h3>
+          <p class="text-gray-600">
+            Log into your student portal to accept or decline the financial aid package. Ensure you understand the terms of any loans.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Important Dates Timeline -->
+    <div class="mt-16">
+      <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Important Dates</h3>
+      <div class="timeline-container mt-8 max-w-3xl mx-auto pb-8">
+        <div class="timeline-item mb-10">
+          <div class="timeline-dot"></div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="font-bold text-lg text-blue-600">October 1, 2025</h4>
+            <p class="text-gray-700">FAFSA Application Opens</p>
+          </div>
+        </div>
+        <div class="timeline-item mb-10">
+          <div class="timeline-dot"></div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="font-bold text-lg text-blue-600">February 1, 2026</h4>
+            <p class="text-gray-700">Priority Deadline for Financial Aid</p>
+          </div>
+        </div>
+        <div class="timeline-item mb-10">
+          <div class="timeline-dot"></div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="font-bold text-lg text-blue-600">April 1, 2026</h4>
+            <p class="text-gray-700">Financial Aid Award Letters Sent</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="font-bold text-lg text-blue-600">May 1, 2026</h4>
+            <p class="text-gray-700">Deadline to Accept Aid Offer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Eligibility Criteria Section -->
+<div id="eligibility" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <span class="inline-block px-4 py-1 rounded-full bg-purple-100 text-purple-700 text-sm font-semibold uppercase mb-3">
+        Who Qualifies
+      </span>
+      <h2 class="text-4xl font-extrabold text-gray-900 mb-6">
+        Eligibility Criteria
+      </h2>
+      <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+        Understand the requirements to qualify for financial aid and scholarships at BATU.
+      </p>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mt-6"></div>
+    </div>
+
+    <!-- Eligibility Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+      <div class="checklist-card card-hover">
+        <div class="p-6 bg-purple-50">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Merit-Based Scholarships</h3>
+          <p class="text-gray-600">
+            For students demonstrating exceptional academic and leadership qualities.
+          </p>
+        </div>
+        <div>
+          <div class="checklist-item flex items-start">
+            <svg class="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <p>Minimum GPA of 3.5 (on 4.0 scale)</p>
+          </div>
+          <div class="checklist-item flex items-start">
+            <svg class="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <p>Strong extracurricular involvement</p>
+          </div>
+          <div class="checklist-item flex items-start">
+            <svg class="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <p>Leadership experience in school or community</p>
+          </div>
+          <div class="checklist-item flex items-start">
+            <svg class="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <p>Letters of recommendation</p>
+          </div>
+        </div>
+        <div class="p-6 text-center">
+          <a href="#" class="btn-primary text-white px-6 py-3 rounded-full font-medium inline-flex items-center">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            Download Scholarship Guide
+          </a>
+        </div>
+      </div>
+      <div class="checklist-card card-hover">
+        <div class="p-6 bg-purple-50">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Need-Based Financial Aid</h3>
+          <p class="text-gray-600">
+            For students with demonstrated financial need to support their education.
+          </p>
+        </div>
+        <div>
+          <div class="checklist-item flex items-start">
+            <svg class="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <p>Completed FAFSA application</p>
+          </div>
+          <div class="checklist-item flex items-start">
+            <svg class="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <p>Enrollment in a degree program at BATU</p>
+          </div>
+          <div class="checklist-item flex items-start">
+            <svg class="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <p>Submission of financial documents (e.g., tax returns)</p>
+          </div>
+          <div class="checklist-item flex items-start">
+            <svg class="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <p>Maintain Satisfactory Academic Progress (SAP)</p>
+          </div>
+        </div>
+        <div class="p-6 text-center">
+          <a href="#" class="btn-primary text-white px-6 py-3 rounded-full font-medium inline-flex items-center">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            Download FAFSA Guide
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <span class="inline-block px-4 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold uppercase mb-3">
+        Common Questions
+      </span>
+      <h2 class="text-4xl font-extrabold text-gray-900 mb-6">
+        Frequently Asked Questions
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mt-6"></div>
+    </div>
+
+    <div class="mt-12 max-w-4xl mx-auto">
+      <div class="space-y-4">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <button class="faq-button w-full px-6 py-4 text-left focus:outline-none flex justify-between items-center" aria-expanded="false">
+            <span class="text-lg font-medium text-gray-900">What is the FAFSA, and why is it important?</span>
+            <svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer px-6 pb-4">
+            <p class="text-gray-600">The Free Application for Federal Student Aid (FAFSA) determines your eligibility for federal and institutional financial aid, including grants, loans, and work-study programs. It’s crucial for accessing need-based aid at BATU.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <button class="faq-button w-full px-6 py-4 text-left focus:outline-none flex justify-between items-center" aria-expanded="false">
+            <span class="text-lg font-medium text-gray-900">Can international students apply for financial aid?</span>
+            <svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer px-6 pb-4">
+            <p class="text-gray-600">International students are not eligible for federal aid but can apply for BATU’s merit-based scholarships and external scholarships. Contact our International Office for more details.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <button class="faq-button w-full px-6 py-4 text-left focus:outline-none flex justify-between items-center" aria-expanded="false">
+            <span class="text-lg font-medium text-gray-900">How do I maintain my financial aid eligibility?</span>
+            <svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer px-6 pb-4">
+            <p class="text-gray-600">Maintain Satisfactory Academic Progress (SAP), which includes a minimum GPA and completion rate. You must also remain enrolled in a degree program and submit renewal applications annually.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <button class="faq-button w-full px-6 py-4 text-left focus:outline-none flex justify-between items-center" aria-expanded="false">
+            <span class="text-lg font-medium text-gray-900">When will I receive my financial aid award?</span>
+            <svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer px-6 pb-4">
+            <p class="text-gray-600">Financial aid award letters are typically sent out by April 1, 2026, for students who meet the February 1 priority deadline.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center mb-4">
+          <svg class="h-8 w-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+            <path d="M12 14l6.16-3.42a12 12 0 01.2 1.38A12 12 0 0112 20.8a12 12 0 01-6.36-2.04v-.02l6.36-3.74z"></path>
+          </svg>
+          <span class="ml-3 text-xl font-bold">BATU</span>
+        </div>
+        <p class="text-gray-400">Empowering the next generation of innovators and leaders.</p>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
+          <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors duration-300">About</a></li>
+          <li><a href="programs.html" class="text-gray-400 hover:text-white transition-colors duration-300">Programs</a></li>
+          <li><a href="admissions.html" class="text-gray-400 hover:text-white transition-colors duration-300">Admissions</a></li>
+          <li><a href="contact-us-page.html" class="text-gray-400 hover:text-white transition-colors duration-300">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Resources</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Student Portal</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Library</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Career Services</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+        <p class="text-gray-400">Unnamed Road, Hod Sakrah WA Abu Hamad<br>Borg El Arab, Alexandria, Egypt</p>
+        <p class="text-gray-400 mt-2">Phone: +20 123 456 7890</p>
+        <p class="text-gray-400">Email: <a href="mailto:info@batu-university.edu.eg" class="hover:text-white transition-colors duration-300">info@batu-university.edu.eg</a></p>
+      </div>
+    </div>
+    <div class="mt-8 border-t border-gray-800 pt-8 text-center">
+      <p class="text-gray-400">© 2025 BATU. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+  // Mobile Menu Toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('#mobile-menu');
+
+    if (menuButton && mobileMenu) {
+      ['click', 'touchstart'].forEach(eventType => {
+        menuButton.addEventListener(eventType, (e) => {
+          e.preventDefault();
+          const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+          menuButton.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('active');
+        }, { passive: false });
+      });
+    }
+
+    // FAQ Toggle
+    const faqButtons = document.querySelectorAll('.faq-button');
+    faqButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        // Close all other FAQs
+        faqButtons.forEach(otherButton => {
+          if (otherButton !== button) {
+            otherButton.setAttribute('aria-expanded', 'false');
+            otherButton.classList.remove('active');
+            const otherAnswer = otherButton.nextElementSibling;
+            if (otherAnswer) {
+              otherAnswer.classList.remove('active');
+            }
+          }
+        });
+        // Toggle the clicked FAQ
+        button.setAttribute('aria-expanded', !isExpanded);
+        button.classList.toggle('active');
+        const answer = button.nextElementSibling;
+        if (answer) {
+          answer.classList.toggle('active');
+        }
+      });
+    });
+  });
+
+  // Navbar Scroll Effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      navbar.classList.add('navbar-scrolled');
+    } else {
+      navbar.classList.remove('navbar-scrolled');
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Life - BATU</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #2563EB;
+      --secondary-color: #1E40AF;
+      --text-dark: #1F2937;
+      --text-light: #6B7280;
+      --bg-light: #F9FAFB;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      
+    }
+    html{
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      padding-top: 70px; /* Space for fixed navbar */
+    }
+    
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    .navbar.scrolled {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      transition: var(--transition);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+    
+    .logo-icon {
+      color: var(--primary-color);
+      font-size: 1.75rem;
+      margin-right: 0.5rem;
+    }
+    
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      white-space: nowrap;
+    }
+    
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      transition: var(--transition);
+    }
+    
+    .nav-item {
+      position: relative;
+      margin: 0 0.75rem;
+    }
+    
+    .nav-link {
+      display: block;
+      padding: 0.5rem;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    
+    .nav-link:hover, 
+    .nav-link.active {
+      color: var(--primary-color);
+    }
+    
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary-color);
+    }
+    
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+    
+    .login-btn {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      margin-right: 0.5rem;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+    
+    .login-btn:hover {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+      background-color: rgba(37, 99, 235, 0.05);
+    }
+    
+    .login-btn i {
+      margin-right: 0.5rem;
+    }
+    
+    .apply-btn {
+      padding: 0.6rem 1.25rem;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border-radius: 9999px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    
+    .apply-btn:hover {
+      background-color: var(--secondary-color);
+    }
+    
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      z-index: 10;
+    }
+    
+    .navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 1200px) {
+      .nav-center {
+        position: relative;
+        left: auto;
+        transform: none;
+      }
+      
+      .nav-wrapper {
+        justify-content: space-between;
+      }
+    }
+    
+    @media (max-width: 1024px) {
+      .nav-item {
+        margin: 0 0.5rem;
+      }
+      
+      .nav-link, .login-btn {
+        font-size: 0.9rem;
+      }
+      
+      .apply-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .nav-center {
+        display: none;
+      }
+      
+      .nav-buttons-desktop {
+        display: none;
+      }
+      
+      .mobile-toggle {
+        display: block;
+      }
+      
+      .mobile-menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        opacity: 0;
+        transform: translateY(-20px);
+        visibility: hidden;
+      }
+      
+      .mobile-menu.active {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+      }
+      
+      .mobile-nav-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .mobile-nav-item {
+        border-bottom: 1px solid #E5E7EB;
+      }
+      
+      .mobile-nav-link {
+        display: block;
+        padding: 1rem 1.5rem;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+      
+      .mobile-nav-link:hover,
+      .mobile-nav-link.active {
+        background-color: #F3F4F6;
+        color: var(--primary-color);
+      }
+      
+      .mobile-nav-link.active {
+        border-left: 4px solid var(--primary-color);
+      }
+      
+      .mobile-buttons {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #E5E7EB;
+      }
+      
+      .mobile-login-btn {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        color: var(--text-dark);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .mobile-login-btn i {
+        margin-right: 0.5rem;
+      }
+      
+      .mobile-apply-btn {
+        padding: 0.75rem 1.5rem;
+        background-color: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        border-radius: 9999px;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .nav-wrapper {
+        height: 60px;
+      }
+      
+      .logo-icon {
+        font-size: 1.5rem;
+      }
+      
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      
+      .mobile-menu {
+        top: 60px;
+      }
+    }
+    
+    /* Ensure menu visibility on desktop during zooming */
+    @media (min-width: 993px) {
+      .nav-center,
+      .nav-buttons-desktop {
+        display: flex !important;
+      }
+      
+      .mobile-menu {
+        display: none !important;
+      }
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      transition: transform 0.3s ease;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #3B82F6;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .active-link::after {
+      width: 100%;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(to right, #2563EB, #4F46E5);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    @media (max-width: 1024px) and (min-width: 768px) {
+      .nav-link {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-size: 0.875rem;
+      }
+    }
+    
+    /* Handle very small screens */
+    @media (max-width: 360px) {
+      .nav-link {
+        font-size: 0.75rem;
+      }
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(to right, #1D4ED8, #4338CA);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+    }
+    
+    .btn-primary:hover::after {
+      left: 100%;
+    }
+
+    /* Gallery styles */
+    .gallery-item {
+      transition: all 0.3s ease;
+      overflow: hidden;
+      height: 0;
+      padding-bottom: 66.67%; /* 2:3 aspect ratio */
+      position: relative;
+    }
+
+    .gallery-item img,
+    .gallery-item video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img,
+    .gallery-item:hover video {
+      transform: scale(1.05);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+      color: white;
+      padding: 1.5rem 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      background: linear-gradient(to top, rgba(37,99,235,0.85) 0%, rgba(37,99,235,0) 100%);
+    }
+
+    /* Activity tabs */
+    .tab-button {
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .tab-button::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #2563EB;
+      transition: width 0.3s ease;
+    }
+
+    .tab-button:hover::after,
+    .tab-button.active::after {
+      width: 100%;
+    }
+
+    .tab-button.active {
+      color: #2563EB;
+      font-weight: 600;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #1F2937;
+      color: #D1D5DB;
+      padding: 4rem 0 2rem;
+    }
+
+    footer a {
+      color: #D1D5DB;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    footer a:hover {
+      color: var(--primary-color);
+    }
+
+    .footer-link {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .social-icon {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      color: var(--primary-color);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #374151;
+      padding-top: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      footer .container {
+        text-align: center;
+      }
+
+      footer .grid-cols-1 {
+        margin-bottom: 2rem;
+      }
+
+      .social-icon {
+        margin: 0 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50">
+  
+<!-- Enhanced Navigation -->
+<header class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-wrapper">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="index.html"><i class="fas fa-graduation-cap logo-icon"></i></a>
+        <span class="logo-text">BATU</span>
+      </div>
+
+      
+      <!-- Centered Desktop Navigation -->
+      <div class="nav-center">
+        <ul class="nav-links" id="nav-links">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact-us-page.html" class="nav-link">Contact Us</a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="programs.html" class="nav-link">Programs</a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="Admissions.html" class="nav-link">Admissions</a>
+          </li>
+          <li class="nav-item">
+            <a href="student-life.html" class="nav-link active">Student Life</a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Desktop Buttons -->
+      <div class="nav-buttons nav-buttons-desktop">
+        <a href="login.html" class="login-btn">
+          <i class="fas fa-user"></i>Login
+        </a>
+        <a href="Admissions.html#requirements" class="apply-btn">Apply Now</a>
+      </div>
+      
+      <!-- Mobile Toggle Button -->
+      <button class="mobile-toggle" id="mobile-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="mobile-nav-links">
+        <li class="mobile-nav-item">
+          <a href="index.html" class="mobile-nav-link">Home</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="about.html" class="mobile-nav-link">About</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="contact-us-page.html" class="mobile-nav-link">Contact Us</a>
+        </li>
+        
+        <li class="mobile-nav-item">
+          <a href="programs.html" class="mobile-nav-link">Programs</a>
+        </li>
+        
+     <li class="mobile-nav-item">
+          <a href="Admissions.html" class="mobile-nav-link">Admissions</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="student-life.html" class="mobile-nav-link active">Student Life</a>
+        </li>
+      </ul>
+      <div class="mobile-buttons">
+        <a href="login-form/SignUp_LogIn_Form.html" class="mobile-login-btn">
+          <i class="fas fa-user"></i>Login
+        </a>
+        <a href="Admissions.html#requirements" class="mobile-apply-btn">Apply Now</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<div class="hero-gradient text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+          Student Life at BATU 
+        </h1>
+        <p class="text-lg md:text-xl mb-6">
+          Experience a vibrant campus culture with diverse events, seminars, and activities that enrich your academic journey.
+        </p>
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+          <a href="#events" class="px-8 py-4 rounded-full text-blue-600 bg-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            Explore Events
+          </a>
+          <a href="#clubs" class="px-8 py-4 rounded-full text-white bg-blue-700 bg-opacity-50 backdrop-filter backdrop-blur font-bold border border-blue-300 border-opacity-20 shadow-lg hover:shadow-xl hover:bg-opacity-70 transition-all duration-300 transform hover:-translate-y-1">
+            Join Student Clubs
+          </a>
+        </div>
+      </div>
+      <div class="hidden md:block">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Activity Tabs -->
+<div class="bg-white py-8 border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap justify-center space-x-2 md:space-x-8">
+      <button class="tab-button active px-4 py-2 text-lg" data-scroll="event-technology-exhibition">Technology Exhibition</button>
+      <button class="tab-button px-4 py-2 text-lg" data-scroll="event-itcollege-sports">IT College & Sports Activities</button>
+      <button class="tab-button px-4 py-2 text-lg" data-scroll="event-research-symposium">Annual Research Symposium</button>
+    </div>
+  </div>
+</div>
+
+<!-- Events & Seminars Section -->
+<section id="events" class="tab-content py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Campus Experience</h2>
+      <p class="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">
+        Seminars & Events
+      </p>
+      <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+        Discover the rich tapestry of academic and social events that enhance your university experience.
+      </p>
+    </div>
+
+    <!-- Featured Event -->
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+      <div class="md:flex">
+        <div class="md:w-1/2">
+          <div class="h-64 md:h-full relative">
+            <img src="assets/IMG-20250424-WA0026.jpg" alt="AI Tech Summit" class="w-full h-full object-cover">
+            <div class="absolute top-0 left-0 bg-blue-600 text-white px-4 py-2 rounded-br-lg font-semibold">
+              
+            </div>
+          </div>
+        </div>
+        <div class="md:w-1/2 p-6 md:p-8">
+          <div class="uppercase tracking-wide text-sm text-blue-600 font-bold">Upcoming Event</div>
+          <h3 class="mt-1 text-2xl font-bold text-gray-900">BATU </h3>
+          <div class="mt-2 flex items-center text-gray-600">
+            <i class="far fa-calendar-alt mr-2"></i>
+            <span>May 15, 2025</span>
+          </div>
+          <div class="mt-1 flex items-center text-gray-600">
+            <i class="far fa-clock mr-2"></i>
+            <span>9:00 AM - 4:00 PM</span>
+          </div>
+          <div class="mt-1 flex items-center text-gray-600">
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            <span>Main Conference Center</span>
+          </div>
+          <p class="mt-4 text-gray-700">
+            Join industry leaders and academic experts for a day of insightful discussions and presentations on the latest advancements in AI technology. The summit will feature keynote speeches, interactive workshops, and networking opportunities.
+          </p>
+          <div class="mt-6">
+            <a href="login.html" class="inline-flex items-center px-4 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              Register Now
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Event 1 -->
+      <div id="event-research-symposium" class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="gallery-item">
+          <img src="assets/IMG-20250424-WA0029.jpg" alt="Research Symposium">
+          <div class="gallery-overlay">
+            <h3 class="text-lg font-bold">Annual Research Symposium</h3>
+            <p class="text-sm opacity-90">April 10, 2025</p>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-center mb-3">
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Academic</span>
+            <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i>9:00 AM - 5:00 PM</span>
+          </div>
+          <p class="text-gray-600 mb-4">The Faculty of Information Technology organized a seminar aimed at raising awareness of modern technologies and discussing the latest developments in fields like AI and cybersecurity. Experts and students took part through lectures and interactive workshops, creating a motivating and enriching learning environment. Students and faculty present their research projects in various fields, showcasing innovative ideas and findings.</p>
+          <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+            Learn more
+            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div id="event-itcollege-sports" class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="gallery-item">
+          <img src="assets/IMG-20250424-WA0027.jpg" alt="IT College & Sports Activities">
+          <div class="gallery-overlay">
+            <h3 class="text-lg font-bold">IT College & Sports Activities</h3>
+            <p class="text-sm opacity-90">March 25, 2025</p>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-center mb-3">
+            <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Workshop</span>
+            <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i>1:00 PM - 4:00 PM</span>
+          </div>
+          <p class="text-gray-600 mb-4">The College of Information Technology is not only a place for academic excellence, but also a hub for creativity, innovation, and student development. In addition to technical learning, the college encourages students to participate in various sports and physical activities that build teamwork, leadership, and a healthy lifestyle. These activities play a vital role in creating a balanced and active college life.</p>
+          <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+            Learn more
+            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div id="event-technology-exhibition" class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="gallery-item">
+          <video autoplay muted loop>
+            <source src="assets/VID-20250424-WA0028.mp4" type="video/mp4">
+          </video>
+          <div class="gallery-overlay">
+            <h3 class="text-lg font-bold">Technology Exhibition</h3>
+            <p class="text-sm opacity-90">May 5, 2025</p>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-center mb-3">
+            <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">Cultural</span>
+            <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i>11:00 AM - 8:00 PM</span>
+          </div>
+          <p class="text-gray-600 mb-4">The IT Exhibition is an annual event where students present their projects in various fields like web development, mobile apps, AI, and cybersecurity. It aims to highlight creativity, innovation, and connect students with industry professionals.</p>
+          <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+            Learn more
+            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Event 4 -->
+      <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div class="gallery-item">
+          <img src="assets/IMG-20250424-WA0025.jpg" alt="Tech Expo">
+          <div class="gallery-overlay">
+            <h3 class="text-lg font-bold">Innovation & Technology Expo</h3>
+            <p class="text-sm opacity-90">April 22, 2025</p>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex justify-between items-center mb-3">
+            <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">Exhibition</span>
+            <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i>10:00 AM - 6:00 PM</span>
+          </div>
+          <p class="text-gray-600 mb-4">Showcasing student and faculty technological innovations, research projects, and startup ideas in a dynamic exhibition.</p>
+          <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+            Learn more
+            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- About Section -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-4">About BATU </h3>
+        <p class="text-gray-400">
+          BATU is dedicated to fostering innovation, research, and academic excellence. Join our vibrant community to shape the future.
+        </p>
+      </div>
+      
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+        <ul>
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About</a></li>
+          <li><a href="programs.html" class="footer-link">Programs</a></li>
+          <li><a href="student-life.html" class="footer-link">Student Life</a></li>
+          <li><a href="Admissions.html" class="footer-link">Admissions</a></li>
+        </ul>
+      </div>
+      
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-4">Contact Us</h3>
+        <p class="text-gray-400 mb-2"><i class="fas fa-map-marker-alt mr-2"></i>123 University Ave, BATU City</p>
+        <p class="text-gray-400 mb-2"><i class="fas fa-phone-alt mr-2"></i>+1 (123) 456-7890</p>
+        <p class="text-gray-400"><i class="fas fa-envelope mr-2"></i>info@batu.edu</p>
+      </div>
+      
+      <!-- Social Media -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-4">Follow Us</h3>
+        <div class="flex">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p class="text-gray-400">&copy; 2025 BATU. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+  });
+
+  // Smooth scrolling for tab buttons
+  const tabButtons = document.querySelectorAll('.tab-button');
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      // Add active class to clicked button
+      button.classList.add('active');
+      
+      // Scroll to the corresponding section
+      const sectionId = button.getAttribute('data-scroll');
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>
+
+</body>
+</html>
